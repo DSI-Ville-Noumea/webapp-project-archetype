@@ -1,0 +1,26 @@
+<?taglib uri="/WEB-INF/security.tld" prefix="sec"?>
+<zk>
+<?link rel="stylesheet" type="text/css" href="/css/index.css"?>
+<?meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" ?>
+	<window height="100%" id="windowIndex">
+		<div height="100%">
+			<borderlayout>
+				<north title="" id="north">
+					<div id="header">
+						<include src="pages/header.zul" />
+					</div>
+				</north>				
+        		<center id="mainContent" autoscroll="true" border="none">
+					<div hflex="true" vflex="true" id="content">
+						<include src="pages/accueil.zul"></include>
+					</div>
+				</center>
+				<south>
+					<toolbar mold="panel" align="center">
+						${project.version} @ Mairie
+					</toolbar>
+				</south>
+			</borderlayout>
+		</div>
+	</window>
+</zk>

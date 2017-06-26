@@ -1,0 +1,71 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\')
+#set( $symbol_space = ' ' )
+#set( $symbol_space = ' ' )
+<?page ?>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:h="http://www.zkoss.org/2005/zk/native"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	<style>body { padding: 0px !important; }</style>
+
+	<borderlayout sclass="loginPage">
+
+		<center border="0" sclass="transparentBg">
+			<window id="loginwin" title="Authentification"
+				border="normal" width="400px" mode="overlapped"
+				position="center,top" style="margin-top: 200px;">
+				<!-- this form-login-page form is also used as the form-error-page to ask for a login again. -->
+				<html style="color:red; font-family: arial, helvetica, verdana, sans-serif" if="${symbol_dollar}{not${symbol_space}empty${symbol_space}param.login_error}">
+					<![CDATA[ Impossible de vous authentifier.<br/>Raison: ${symbol_dollar}{SPRING_SECURITY_LAST_EXCEPTION.message}]]>
+                </html>
+
+				<html style="color:red; font-family: arial, helvetica, verdana, sans-serif" if="${symbol_dollar}{not${symbol_space}empty${symbol_space}param.denied}">
+					<![CDATA[ Vous n'avez pas les droits nécessaires pour accéder à cette application. ]]>
+                </html>
+
+				<h:form id="f" name="f" action="login" method="POST">
+					<grid>
+						<columns>
+							<column width="115px" />
+							<column hflex="2" />
+							<column hflex="2" />
+						</columns>
+						<rows>
+							<row>
+								<cell rowspan="3">
+									<image height="100px" style="margin: 0;"
+										src="imgs/logo.jpg" />
+								</cell>
+								Identifiant:
+								<textbox id="u" name="username"
+									hflex="1" />
+							</row>
+							<row>
+								Mot de passe:
+								<textbox id="p" type="password"
+									name="password" hflex="1" />
+							</row>
+							<row align="center">
+								<cell colspan="2">
+									<button type="submit"
+										label="Se connecter" width="150px" focus="true" />
+								</cell>
+							</row>
+						</rows>
+					</grid>
+				</h:form>
+
+			</window>
+		</center>
+
+		<south border="0">
+			<toolbar mold="panel" align="center">
+				${symbol_dollar}{project.version} @ Mairie
+			</toolbar>
+		</south>
+
+	</borderlayout>
+
+</zk>

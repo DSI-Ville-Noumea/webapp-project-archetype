@@ -1,0 +1,41 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context" xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd         http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+
+    <context:spring-configured/>
+ 		
+ 	<context:component-scan base-package="${package}.${appName}" />
+    
+    <!-- Datasources and ORM -->
+
+    <!-- ADS 1 ADS DATASOURCE -->
+
+	<bean id="appDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+        <property name="driverClass" value="org.h2.Driver"/>
+        <property name="url" value="jdbc:h2:mem:${appName}test;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE"/>
+        <property name="username" value="sa"/>
+        <property name="password" value=""/>
+    </bean>
+    
+    <bean class="org.springframework.orm.jpa.JpaTransactionManager" id="noumeaTransactionManager">
+        <property name="entityManagerFactory" ref="noumeaEntityManagerFactory"/>
+    </bean>
+    
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="noumeaEntityManagerFactory" />
+	</bean>
+    
+    <tx:annotation-driven mode="aspectj" transaction-manager="noumeaTransactionManager"/>
+    
+    <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="noumeaEntityManagerFactory">
+        <property name="persistenceXmlLocation" value="/META-INF/persistence.xml" />
+        <property name="persistenceUnitName" value="persistenceUnit"/>
+        <property name="dataSource" ref="appDataSource"/>
+    </bean>
+
+	<bean class="java.lang.String" id="groupeADAuthentification" />
+
+</beans>

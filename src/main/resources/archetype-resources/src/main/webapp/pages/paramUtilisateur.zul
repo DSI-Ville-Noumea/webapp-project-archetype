@@ -1,0 +1,61 @@
+<window
+	viewModel="@id('vm') @init('${package}.${appName}.viewModel.ParametrageUtilisateurViewModel')"
+	border="none" hflex="1" vflex="1" contentStyle="overflow:auto;">
+
+	<vlayout vflex="1">
+
+		<toolbar sclass="toolbar" mold="default">
+			<toolbarbutton onClick="@command('refreshListeUtilisateur')"
+				sclass="no-label-button" iconSclass="z-icon-refresh"
+				tooltiptext="Rafraîchir" />
+			<toolbarbutton onClick="@command('createUtilisateur')"
+				iconSclass="z-icon-plus-square" label="Créer un utilisateur" />
+			<toolbarbutton onClick="@command('save')"
+				iconSclass="z-icon-save" label="Enregistrer" />
+		</toolbar>
+
+		<listbox mold="paging" model="@bind(vm.listeUtilisateur)" hflex="1">
+			<listhead menupopup="auto" sizable="true">
+				<listheader sort="auto(nom)" label="Nom" hflex="2" />
+				<listheader sort="auto(prenom)" label="Prénom"
+					hflex="1" />
+				<listheader sort="auto(identifiant)" label="Login"
+					hflex="1" />
+			</listhead>
+			<template name="model" var="line">
+				<listitem>
+					<listcell>
+						<textbox value="@bind(line.nom)" hflex="1" onCreate="self.focus()" />
+						<label value="@bind(line.nom)"  />
+					</listcell>
+					<listcell>
+						<textbox value="@bind(line.prenom)" hflex="1"	/>
+						<label value="@bind(line.prenom)" />
+					</listcell>
+					<listcell>
+						<textbox value="@bind(line.identifiant)" hflex="1" />
+						<label value="@bind(line.identifiant)"/>
+					</listcell>
+					<listcell>
+						<button sclass="no-label-button"
+							visible="@bind(not empty line.id)" iconSclass="z-icon-pencil"
+							tooltiptext="Modifier l'utilisateur"
+							onClick="@command('modifierUtilisateur', utilisateur=line)" />
+						<button sclass="no-label-button"
+							visible="@bind(not empty line.id)" iconSclass="z-icon-trash-o"
+							tooltiptext="Supprimer l'utilisateur"
+							onClick="@command('supprimerUtilisateur', utilisateur=line)" />
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+
+		<toolbar sclass="toolbarCenter" mold="default">
+			<toolbarbutton onClick="@command('refreshListeUtilisateur')"
+				sclass="no-label-button" iconSclass="z-icon-refresh"
+				tooltiptext="Rafraîchir" />
+			<toolbarbutton onClick="@command('save')"
+				iconSclass="z-icon-save" label="Enregistrer" />
+		</toolbar>
+	</vlayout>
+</window>

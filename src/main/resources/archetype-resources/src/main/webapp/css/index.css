@@ -1,0 +1,68 @@
+.z-north, .z-south {
+	background-color: #21374c;
+	min-height: 43px;
+	overflow-y: hidden;
+	border: 0 none;
+	color: #FFFFFF;
+}
+
+.z-north .z-window-content, .z-south .z-window-content {
+	background-color: #21374c;
+}
+
+.z-menubar, .z-menuitem-text {
+	background: #21374c;
+	color: #FFFFFF;
+	text-decoration: none;
+	text-shadow: 0 0px !important;
+}
+
+.z-menuitem-content:hover {
+	background: #21374c;
+	color: #FFFFFF;
+}
+
+.z-window-content {
+	padding: 0px;
+	background-color: #CEE3F6;
+	overflow: auto;
+}
+
+.z-north .z-window-content .z-a {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+.divName {
+	float: left;
+	margin: 15px;
+}
+
+.z-loading {
+	top: 50% !important;
+	left: 45% !important;
+	align: center;
+	vertical-align: middle;
+}
+
+/* Boutons */
+/************/
+.no-label-button i {
+	margin: 0;
+}
+
+.toolbar>.z-toolbar-start {
+	text-align: right;
+	float: none;
+}
+
+.toolbarCenter>.z-toolbar-start {
+	text-align: center;
+	float: none;
+}
+
+.z-notification, .z-notification-info .z-notification-content {
+	text-align: center;
+	background: #CEE3F6;
+	color: #000000;
+}

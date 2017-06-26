@@ -1,0 +1,7 @@
+<?taglib uri="/WEB-INF/security.tld" prefix="sec"?>
+<zk>
+	<window height="100%" apply="org.zkoss.bind.BindComposer">
+			
+	<include src="/pages/paramUtilisateur.zul" hflex="1"/>
+	</window>
+</zk>

@@ -1,0 +1,21 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	version="2.0">
+
+	<persistence-unit name="persistenceUnit" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect" />
+			<property name="hibernate.connection.charSet" value="UTF-8" />
+			 <!-- value="create" to build a new database on each run; value="update" to modify an existing database; value="create-drop" means the same as "create" but also drops tables when Hibernate closes; value="validate" makes no changes to the database -->
+            <property name="hibernate.hbm2ddl.auto" value="validate"/>
+            
+			<!-- Ne pas logguer le sql en production -->
+			<property name="hibernate.show_sql" value="false" />
+
+		</properties>
+	</persistence-unit>
+</persistence>

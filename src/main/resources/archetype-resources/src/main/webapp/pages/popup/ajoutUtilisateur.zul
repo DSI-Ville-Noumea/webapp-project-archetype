@@ -1,0 +1,40 @@
+<window id="ajoutDialog" title="Ajout d'un utilisateur" mode="modal"
+	closable="true" action="show: slideDown;hide: slideUp"
+	apply="org.zkoss.bind.BindComposer" onCancel="self.detach()"
+	viewModel="@id('vm') @init('${package}.${appName}.viewModel.AjoutUtilisateurViewModel')">
+	<vlayout width="400px">
+		<separator />
+		<hlayout>
+			<hlayout width="80px">
+				<label value="Nom :" />
+			</hlayout>
+			<textbox value="@bind(vm.utilisateur.nom)" hflex="1"
+				onCreate="self.focus()" />
+		</hlayout>
+		<separator />
+		<hlayout>
+			<hlayout width="80px">
+				<label value="Prénom :" />
+			</hlayout>
+			<textbox value="@bind(vm.utilisateur.prenom)" hflex="1" />
+		</hlayout>
+		<separator />
+		<hlayout>
+			<hlayout width="80px">
+				<label value="Identifiant :" />
+			</hlayout>
+			<textbox value="@bind(vm.utilisateur.identifiant)"
+				hflex="1" />
+		</hlayout>
+		<separator />
+		<div align="center">
+			<hlayout>
+				<button label="Valider"
+					onClick="@command('saveUtilisateur',win=ajoutDialog)" />
+				<button label="Annuler"
+					onClick="@command('cancelUtilisateur',win=ajoutDialog)" />
+			</hlayout>
+		</div>
+		<separator />
+	</vlayout>
+</window>

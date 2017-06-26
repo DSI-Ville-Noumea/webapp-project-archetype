@@ -1,0 +1,21 @@
+<zk>
+	<window id="returnMessage" title=" " width="420px" height="420px"
+		border="normal" minimizable="false" mode="modal" maximizable="false"
+		closable="true" action="hide: slideUp" sizable="true"
+		apply="org.zkoss.bind.BindComposer" onCancel="self.detach()"
+		viewModel="@id('vm') @init('${package}.${appName}.viewModel.ReturnMessage')">
+		<div sclass="fond" height="100%">
+			<listbox vflex="1" id="err" model="@load(vm.errorsMessages)"
+				visible="@bind(not empty vm.errorsMessages)">
+				<listhead>
+					<listheader label="Erreurs :" style="color:red;" />
+				</listhead>
+				<template name="model">
+					<listitem>
+						<listcell label="@bind(each)" />
+					</listitem>
+				</template>
+			</listbox>
+		</div>
+	</window>
+</zk>

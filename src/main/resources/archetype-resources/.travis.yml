@@ -1,0 +1,19 @@
+language: java
+jdk:
+- oraclejdk8
+cache:
+  directories:
+  - "$HOME/.m2"
+before_install:
+- export TZ=Pacific/Noumea
+install: mvn install -DSkipTests=true -Dmaven.javadoc.skip=true -DcreateChecksum=true
+script:
+- mvn versioneye:update test jacoco:report
+after_success:
+- mvn coveralls:report
+before_deploy:
+- export RELEASE_PKG_FILE=$(ls target/*.war)
+- export RELEASE_PKG_MD5_FILE=$(ls target/*.war.md5)
+- export RELEASE_PKG_SHA_FILE=$(ls target/*.war.sha1)
+- echo "deploying $RELEASE_PKG_FILE , $RELEASE_PKG_MD5_FILE , $RELEASE_PKG_SHA_FILE
+  to GitHub releases"
