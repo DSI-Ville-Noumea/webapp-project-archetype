@@ -1,0 +1,30 @@
+language: java
+jdk:
+- oraclejdk8
+cache:
+  directories:
+  - "$HOME/.m2"
+before_install:
+- export TZ=Pacific/Noumea
+install: mvn install -DSkipTests=true -Dmaven.javadoc.skip=true -DcreateChecksum=true
+script:
+- mvn versioneye:update test jacoco:report
+after_success:
+- mvn coveralls:report
+before_deploy:
+- export RELEASE_PKG_FILE=$(ls target/*.war)
+- export RELEASE_PKG_MD5_FILE=$(ls target/*.war.md5)
+- export RELEASE_PKG_SHA_FILE=$(ls target/*.war.sha1)
+- echo "deploying $RELEASE_PKG_FILE , $RELEASE_PKG_MD5_FILE , $RELEASE_PKG_SHA_FILE
+  to GitHub releases"
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: S/UajlA3kBg0XQr4wjJHWLUsLM70MxsYXQYgLl5kZjaoSrBYaByq8rFJNvWQXnTfnnmhL3NB9fGqCK5hybrwn2crpddiiOS7CuHo9Hd+LXtKRdFLxflNFCxIzq8zomCKU9jdv+BO7ykt6kfHiqr+Ku+Nz0ZIEbHM3XtxXYg+np7Nyjt7N2xxlwGmDtwb0td6leE+JdEa1GLAe/xcgkIFU+zcsd8tbe9XhU3ypKNgKqt370m9nQkWmMpdbtrtFGcxd/cxP0WiWujRwGphi5zN+z6GVBxPi1/nrjlgYOdYUC0+j7SD4X4BapvYLGpQq57xyU7M/l5yMaNd/3TCza5U0DS0yylxVwluAQgo2I6eq23fr2OCc5NaB494W548DHpGLiIqZ/YxqtM1tEYwu9kvxWlk5L/sQ6QWhlnrlib1/yC8v4Ce5puNS4TolXZoUvwams4ZEr7oXvTSQDJUoLVi6FmvYyD+UElDA5a2LdqgetRglyL8Cz9YHDcGZmZrV0FsAqrWBvOosoxBGJ8Vr6mbAtenaVkOXVxSDkno1nSu8266inYwQBwi6Xn15ZOTEYEd8Ik/rKTUCFGbjD5zxt/qaMiALbXN03dadwEBJuIYUdjIImalsMcJmqOJeiw134PNUv3dURBMWuqxMdWgIyvfB8kL0auw5h1x3L11cgeZM3M=
+  file:
+  - "${RELEASE_PKG_FILE}"
+  - "${RELEASE_PKG_MD5_FILE}"
+  - "${RELEASE_PKG_SHA_FILE}"
+  on:
+    repo: DSI-Ville-Noumea/webapp-project-archetype
