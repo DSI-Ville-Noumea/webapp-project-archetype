@@ -4,7 +4,7 @@
 
   <groupId>nc.noumea.mairie</groupId>
   <artifactId>webapp-project-archetype</artifactId>
-  <version>1.00.00-SNAPSHOT</version>
+  <version>1.00.00</version>
   <packaging>maven-archetype</packaging>
 
   <name>DMD Web Application Project Archetype</name>
@@ -14,9 +14,6 @@
     <jacoco.version>0.7.9</jacoco.version>
     <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
     <coveralls-maven-plugin.repoToken>${env.COVERALLS_REPOTOKEN}</coveralls-maven-plugin.repoToken>
-    <versioneye-maven-plugin.version>3.11.4</versioneye-maven-plugin.version>
-    <versioneye-maven-plugin.apiKey>${env.VERSIONEYE_APIKEY}</versioneye-maven-plugin.apiKey>
-    <versioneye-maven-plugin.projectId>${env.VERSIONEYE_PROJECTID}</versioneye-maven-plugin.projectId>
     <checksum-maven-plugin.version>1.4</checksum-maven-plugin.version>
   </properties>
 
@@ -74,15 +71,6 @@
         <configuration>
           <repoToken>${coveralls-maven-plugin.repoToken}</repoToken>
           <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>com.versioneye</groupId>
-        <artifactId>versioneye-maven-plugin</artifactId>
-        <version>${versioneye-maven-plugin.version}</version>
-        <configuration>
-          <apiKey>${versioneye-maven-plugin.apiKey}</apiKey>
-          <projectId>${versioneye-maven-plugin.projectId}</projectId>
         </configuration>
       </plugin>
       <plugin>

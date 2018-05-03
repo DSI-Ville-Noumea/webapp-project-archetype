@@ -55,7 +55,15 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 		TypedQuery<Utilisateur> query = entityManager.createQuery(sb.toString(), Utilisateur.class);
 		query.setParameter("identifiant", identifiant);
 
-		return query.getSingleResult();
+		Utilisateur res;
+
+		try{
+			res =  query.getSingleResult();
+		}catch (NoResultException e){
+			res = null;
+		}
+
+		return res;
 	}
 
 }

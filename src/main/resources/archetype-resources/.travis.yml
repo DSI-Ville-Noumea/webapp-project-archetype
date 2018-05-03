@@ -8,7 +8,7 @@ before_install:
 - export TZ=Pacific/Noumea
 install: mvn install -DSkipTests=true -Dmaven.javadoc.skip=true -DcreateChecksum=true
 script:
-- mvn versioneye:update test jacoco:report
+- mvn test jacoco:report
 after_success:
 - mvn coveralls:report
 before_deploy:

@@ -81,7 +81,6 @@ public class UtilisateurDaoImplTest {
 
 		// Then
 		assertEquals(null, result);
-		assertNotNull(result);
 	}
 
 	@Test

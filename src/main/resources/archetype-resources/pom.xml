@@ -15,7 +15,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<tomcat-servlet-api.version>8.5.15</tomcat-servlet-api.version>
-		<zk.version>8.0.2.2</zk.version>
+		<zk.version>8.5.1.1</zk.version>
 		<hibernate.version>5.2.10.Final</hibernate.version>
 		<spring.version>4.3.9.RELEASE</spring.version>
 		<spring-security.version>4.2.3.RELEASE</spring-security.version>
@@ -26,9 +26,6 @@
 		<oracle.version>10.2.0.2</oracle.version>
 		<coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
 		<coveralls-maven-plugin.repoToken>${env.COVERALLS_REPOTOKEN}</coveralls-maven-plugin.repoToken>
-		<versioneye-maven-plugin.version>3.11.4</versioneye-maven-plugin.version>
-		<versioneye-maven-plugin.apiKey>${env.VERSIONEYE_APIKEY}</versioneye-maven-plugin.apiKey>
-		<versioneye-maven-plugin.projectId>${env.VERSIONEYE_PROJECTID}</versioneye-maven-plugin.projectId>
 		<checksum-maven-plugin.version>1.4</checksum-maven-plugin.version>
 		<maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
 		<maven-war-plugin.version>3.1.0</maven-war-plugin.version>
@@ -44,6 +41,22 @@
 		<developerConnection>scm:git:git://github.com/DSI-Ville-Noumea/${appName}.git</developerConnection>
 		<url>https://github.com/DSI-Ville-Noumea/${appName}.git</url>
 	</scm>
+
+	<repositories>
+		<repository>
+			<id>mvn repository</id>
+			<url>http://repo1.maven.org/maven2</url>
+		</repository>
+		<repository>
+			<id>ZK CE</id>
+			<name>ZK CE Repository</name>
+			<url>http://mavensync.zkoss.org/maven2</url>
+		</repository>
+		<repository>
+			<id>ZK EE</id>
+			<url>https://maven.zkoss.org/repo/zk/ee</url>
+		</repository>
+	</repositories>
 
 	<dependencies>
 		<!-- Spring security -->
@@ -232,15 +245,6 @@
 				<configuration>
 					<repoToken>${coveralls-maven-plugin.repoToken}</repoToken>
 					<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>com.versioneye</groupId>
-				<artifactId>versioneye-maven-plugin</artifactId>
-				<version>${versioneye-maven-plugin.version}</version>
-				<configuration>
-					<apiKey>${versioneye-maven-plugin.apiKey}</apiKey>
-					<projectId>${versioneye-maven-plugin.projectId}</projectId>
 				</configuration>
 			</plugin>
 			<plugin>
