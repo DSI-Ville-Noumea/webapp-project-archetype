@@ -4,6 +4,8 @@
 
 Archetype Maven pour projet web ZK Mairie
 
+Le projet a été archivé car ce type de projet ne sera plus exploité : départ sur Spring Boot - ZK - Liquibase
+
 
 ## Installation de l'archetype dans le repository maven local
 
